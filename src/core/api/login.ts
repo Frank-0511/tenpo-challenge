@@ -1,9 +1,13 @@
 import { LoginRequest, LoginResponse } from "../types";
 
-import axios from "axios";
+import { AxiosRequestConfig } from "axios";
+import axiosInstance from "./axiosInstance";
 
 export const loginApi = async (data: LoginRequest): Promise<LoginResponse> => {
-  const response = await axios.post<LoginResponse>("/api/login", data);
-  console.log("🚀 ~ loginApi ~ response:", response);
+  const response = await axiosInstance.post<LoginResponse>("/api/login", data, {
+    headers: { "Content-Type": "application/json" },
+    customConfig: { useMock: true },
+  } as unknown as AxiosRequestConfig);
+
   return response.data;
 };

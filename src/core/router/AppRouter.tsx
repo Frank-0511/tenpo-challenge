@@ -1,33 +1,34 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { MainLayout, NotFoundPage } from "@/shared/components";
+import { FallbackPage, MainLayout, NotFoundPage } from "@/shared/components";
+import { Suspense, lazy } from "react";
 
-import { HomePage } from "@/features/main";
-import { LoginPage } from "@/features/auth";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
 import { ROUTES } from "./routes";
 
+const LoginPage = lazy(() => import("@/features/auth/pages/login"));
+const HomePage = lazy(() => import("@/features/main/pages/home"));
+
 export const AppRouter = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        {/* Rutas públicas */}
-        <Route element={<PublicRoute />}>
-          <Route element={<MainLayout />}>
-            <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+      <Suspense fallback={<FallbackPage />}>
+        <Routes>
+          <Route element={<PublicRoute />}>
+            <Route element={<MainLayout />}>
+              <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+            </Route>
           </Route>
-        </Route>
 
-        {/* Rutas privadas */}
-        <Route element={<PrivateRoute />}>
-          <Route element={<MainLayout />}>
-            <Route path={ROUTES.HOME} element={<HomePage />} />
+          <Route element={<PrivateRoute />}>
+            <Route element={<MainLayout />}>
+              <Route path={ROUTES.HOME} element={<HomePage />} />
+            </Route>
           </Route>
-        </Route>
 
-        {/* Ruta Not Found */}
-        <Route path={ROUTES.NOT_FOUND} element={<NotFoundPage />} />
-      </Routes>
+          <Route path={ROUTES.NOT_FOUND} element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 };

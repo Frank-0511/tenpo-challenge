@@ -1,9 +1,11 @@
 import { FaSignOutAlt } from "react-icons/fa";
 import { ThemeToggle } from "../../atoms";
+import { memo } from "react";
 import { useAuthStore } from "@/core/store/authStore";
 
-export const Header = ({ isScrolled }: { isScrolled: boolean }) => {
-  const { isAuthenticated, logout } = useAuthStore();
+export const Header = memo(({ isScrolled }: { isScrolled: boolean }) => {
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const logout = useAuthStore((state) => state.logout);
 
   return (
     <header
@@ -21,4 +23,4 @@ export const Header = ({ isScrolled }: { isScrolled: boolean }) => {
       </div>
     </header>
   );
-};
+});

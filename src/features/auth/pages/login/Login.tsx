@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useLogin } from "@/core/hooks";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-export const LoginPage = () => {
+const LoginPage = () => {
   const {
     register,
     handleSubmit,
@@ -49,3 +49,5 @@ export const LoginPage = () => {
     </div>
   );
 };
+
+export default LoginPage;

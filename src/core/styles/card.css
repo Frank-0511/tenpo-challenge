@@ -1,0 +1,7 @@
+[data-theme="dark"] .card-custom {
+  @apply shadow-2xl bg-gray-800;
+}
+
+[data-theme="emerald"] .card-custom {
+  @apply shadow-2xl bg-base-200;
+}

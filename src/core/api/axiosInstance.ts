@@ -3,7 +3,9 @@ import axios, { AxiosHeaders, InternalAxiosRequestConfig } from "axios";
 import { useAuthStore } from "../store";
 
 interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
-  useMock?: boolean;
+  customConfig: {
+    useMock: boolean;
+  };
 }
 
 const axiosInstance = axios.create({
@@ -19,8 +21,10 @@ axiosInstance.interceptors.request.use(
     const customConfig = config as CustomAxiosRequestConfig;
     const newConfig = { ...customConfig };
 
-    if (customConfig.useMock) {
-      newConfig.baseURL = "http://localhost:5173";
+    console.log("🚀 ~ customConfig:", customConfig);
+    console.log("🚀 ~ newConfig:", newConfig);
+    if (newConfig.customConfig.useMock) {
+      newConfig.baseURL = import.meta.env.VITE_APP_URL;
     } else {
       newConfig.headers.set("x-msw-bypass", "true");
     }

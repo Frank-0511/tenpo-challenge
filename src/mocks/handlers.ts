@@ -1,4 +1,4 @@
-import { HttpResponse, http } from "msw";
+import { HttpResponse, http, passthrough } from "msw";
 import { LoginRequest, LoginResponse } from "@/core/types";
 
 const mockUsers = [
@@ -44,5 +44,12 @@ export const handlers = [
         { status: 401 }
       );
     }
+  }),
+  http.get("https://randomuser.me/api/", ({ request }) => {
+    if (request.headers.has("x-msw-bypass")) {
+      return passthrough();
+    }
+
+    return HttpResponse.text("Mocked response");
   }),
 ];

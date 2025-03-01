@@ -8,7 +8,7 @@ interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || "https://randomuser.me/api",
-  timeout: 10000,
+  timeout: 50000,
   headers: {
     "Content-Type": "application/json",
   },
@@ -21,6 +21,8 @@ axiosInstance.interceptors.request.use(
 
     if (customConfig.useMock) {
       newConfig.baseURL = "http://localhost:5173";
+    } else {
+      newConfig.headers.set("x-msw-bypass", "true");
     }
 
     const token = useAuthStore.getState().token;

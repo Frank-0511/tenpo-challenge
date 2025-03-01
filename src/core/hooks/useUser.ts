@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useToastColors } from "./useToastColors";
 
-export const useUsers = () => {
+export const useUsers = (autoFetch = true) => {
   const { getToastForType } = useToastColors();
 
   const usersQuery = useQuery({
@@ -14,7 +14,7 @@ export const useUsers = () => {
     gcTime: 1000 * 60 * 10,
     refetchOnWindowFocus: false,
     retry: false,
-    enabled: false,
+    enabled: autoFetch,
   });
 
   useEffect(() => {
@@ -26,5 +26,9 @@ export const useUsers = () => {
     }
   }, [usersQuery.isError, usersQuery.error, getToastForType]);
 
-  return { usersQuery };
+  return {
+    fetchUsers: usersQuery.refetch,
+    listUsers: usersQuery.data?.results ?? [],
+    isLoading: usersQuery.isLoading,
+  };
 };

@@ -1,16 +1,16 @@
-import { useEffect } from "react";
+import { UserList } from "../../components";
 import { useUsers } from "../../../../core/hooks/useUser";
 const HomePage = () => {
-  const { usersQuery } = useUsers();
-
-  useEffect(() => {
-    usersQuery.refetch();
-  }, [usersQuery]);
+  const { listUsers } = useUsers();
+  console.log("🚀 ~ HomePage ~ listUsers:", listUsers);
 
   return (
-    <article className="prose">
-      <h1>Bienvenido al Home</h1>
-    </article>
+    <section>
+      <article className="prose px-6">
+        <h1>Bienvenido al Home</h1>
+      </article>
+      <UserList users={listUsers} />
+    </section>
   );
 };
 

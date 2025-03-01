@@ -10,7 +10,7 @@ export const MainLayout = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header isScrolled={isScrolled} />
-      <main ref={mainRef} className="p-4 h-[calc(100vh-80px)] overflow-y-auto">
+      <main ref={mainRef} className="py-6 h-[calc(100vh-80px)] overflow-y-auto">
         <Outlet />
       </main>
     </div>

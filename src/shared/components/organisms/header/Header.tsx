@@ -9,14 +9,23 @@ export const Header = memo(({ isScrolled }: { isScrolled: boolean }) => {
 
   return (
     <header
-      className={`p-4 flex justify-end items-center transition-colors ${
+      className={`p-4 flex justify-between items-center transition-colors ${
         isScrolled ? "bg-base-200 shadow-md" : "bg-transparent"
       }`}
     >
+      <img
+        src="https://cdn.prod.website-files.com/647f4d1c528358bdb9d8ef3e/64e3a0a372c75160c61be423_tenpo.svg"
+        alt="Logo"
+        className="w-24 h-10"
+      />
       <div className="flex items-center gap-4">
         <ThemeToggle />
         {isAuthenticated && (
-          <button onClick={logout} className="btn btn-ghost">
+          <button
+            onClick={logout}
+            className="btn btn-ghost"
+            aria-label="Cerrar sesión"
+          >
             <FaSignOutAlt size={20} />
           </button>
         )}

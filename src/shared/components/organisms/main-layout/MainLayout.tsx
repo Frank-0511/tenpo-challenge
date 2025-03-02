@@ -8,9 +8,9 @@ export const MainLayout = () => {
   const isScrolled = useScrollPosition(mainRef);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col max-w-7xl justify-center mx-auto">
       <Header isScrolled={isScrolled} />
-      <main ref={mainRef} className="py-6 h-[calc(100vh-80px)] overflow-y-auto">
+      <main ref={mainRef} className="pt-6 flex-grow min-h-0 flex">
         <Outlet />
       </main>
     </div>

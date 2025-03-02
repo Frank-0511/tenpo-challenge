@@ -1,8 +1,9 @@
+import { GetUserResponse } from "../types";
 import axiosInstance from "./axiosInstance";
 
 export const fetchUsers = async () => {
   try {
-    const response = await axiosInstance.get("/", {
+    const response = await axiosInstance.get<GetUserResponse>("/", {
       params: {
         results: 300,
         page: 1,

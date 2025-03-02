@@ -21,8 +21,6 @@ axiosInstance.interceptors.request.use(
     const customConfig = config as CustomAxiosRequestConfig;
     const newConfig = { ...customConfig };
 
-    console.log("🚀 ~ customConfig:", customConfig);
-    console.log("🚀 ~ newConfig:", newConfig);
     if (newConfig?.customConfig?.useMock) {
       newConfig.baseURL = import.meta.env.VITE_APP_URL;
     } else {

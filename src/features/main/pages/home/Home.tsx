@@ -2,13 +2,14 @@ import { UserList } from "../../components";
 import { useUsers } from "../../../../core/hooks/useUser";
 const HomePage = () => {
   const { listUsers } = useUsers();
-  console.log("🚀 ~ HomePage ~ listUsers:", listUsers);
 
   return (
-    <section>
-      <article className="prose px-6">
-        <h1>Bienvenido al Home</h1>
-      </article>
+    <section className="flex flex-col w-full gap-6">
+      <div className="px-6 flex w-full justify-between">
+        <article className="prose">
+          <h1>Lista de usuarios</h1>
+        </article>
+      </div>
       <UserList users={listUsers} />
     </section>
   );

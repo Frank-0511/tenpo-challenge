@@ -26,7 +26,7 @@ export const handlers = [
   http.post("/api/login", async ({ request }) => {
     const { email, password } = (await request.json()) as LoginRequest;
 
-    await new Promise((res) => setTimeout(res, 2000));
+    await new Promise((res) => setTimeout(res, 1000));
 
     const user = mockUsers.find(
       (u) => u.email === email && u.password === password

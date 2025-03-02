@@ -17,7 +17,7 @@ const LoginPage = () => {
   const { mutate, isPending } = useLogin();
 
   return (
-    <div className="flex items-center justify-center h-full w-full my-auto">
+    <div className="flex items-center justify-center h-full w-full my-auto px-6">
       <Card title="Iniciar sesión" className="-mt-10">
         <form onSubmit={handleSubmit((data) => mutate(data))}>
           <InputField

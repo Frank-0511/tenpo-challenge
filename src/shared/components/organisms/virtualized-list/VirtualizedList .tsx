@@ -57,6 +57,7 @@ export const VirtualizedList = <T,>({
                     style={{
                       ...style,
                       marginBottom: `${rowGap}px`,
+                      padding: "24px",
                     }}
                     className="w-full"
                   >

@@ -1,9 +1,14 @@
+export enum Gender {
+  MALE = "male",
+  FEMALE = "female",
+}
+
 export interface User {
   id: { value: string } | null;
   name: { first: string; last: string };
   email: string;
   picture: { thumbnail: string };
-  gender: string;
+  gender: Gender;
   phone: string;
   cell: string;
 }

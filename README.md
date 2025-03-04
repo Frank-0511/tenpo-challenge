@@ -1,50 +1,91 @@
-# React + TypeScript + Vite
+# Tenpo Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📋 Descripción
+Una aplicación web para visualizar usuarios desde una API externa, con funcionalidades de virtualización para un rendimiento óptimo y una interfaz de usuario adaptativa.
 
-Currently, two official plugins are available:
+## 🚀 Tecnologías Utilizadas
+- React
+- TypeScript
+- Tailwind CSS
+- DaisyUI
+- React Icons
+- React Window (virtualización)
+- Bun (gestor de paquetes)
+- Msw (mocks de apis)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔧 Requisitos Previos
+- Node.js (v20 o superior)
+- Bun instalado globalmente
 
-## Expanding the ESLint configuration
+## ⚙️ Instalación y Ejecución
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Instalación
+```bash
+# Instalar dependencias con Bun
+bun install
 
-- Configure the top-level `parserOptions` property like this:
+# Iniciar Mock Service Worker (MSW)
+bun msw:start
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+# Iniciar servidor de desarrollo
+bun dev
+
+# Construir aplicación para producción
+bun run build
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 🏗️ Estructura del Proyecto
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+/src
+├── app/                         # Configuración global y punto de entrada
+│   ├── App.tsx                  # Componente raíz con providers globales
+│   └── main.tsx                 # Punto de entrada de la aplicación
+│
+├── assets/                      # Recursos estáticos (imágenes, fuentes, etc.)
+│
+├── core/                        # Infraestructura y configuración global
+│   ├── api/                     # Configuración global de llamadas a la API
+│   ├── constants/               # Valores constantes reutilizables
+│   ├── hooks/                   # Hooks globales (API, configuración, etc.)
+│   ├── router/                  # Configuración de React Router
+│   ├── store/                   # Gestión de estado global con Zustand
+│   ├── styles/                  # Estilos globales (Tailwind, daisyui, etc.)
+│   └── types/                   # Tipos TypeScript globales
+│
+├── mocks/                       # Mock para simular el login
+│
+├── features/                    # Organización por módulos o funcionalidades
+│   ├── auth/                    # Módulo de autenticación
+│   │   ├── components/          # Componentes específicos de autenticación
+│   │   ├── pages/               # Páginas: Login, Registro, etc.
+│   │   └── schemas/             # Schemas de validación de formularios
+│   │
+│   ├── main/                    # Módulo privado (Home, Perfil, etc.)
+│   │   ├── components/          # Componentes específicos de main
+│   │   └── pages/               # Páginas: Home, Perfil, etc.
+│
+└── shared/                      # Componentes, hooks y utilidades compartidas
+    └── components/              # Componentes reutilizables
+        ├── atoms/               # Elementos básicos (botón, input, iconos)
+        ├── molecules/           # Agrupaciones de átomos (formularios, cards)
+        ├── organisms/           # Componentes complejos (secciones, paneles)
+        ├── templates/           # Disposiciones de página sin contenido específico
+        └── pages/               # Vistas completas implementando templates
 ```
+
+## 🛠️ Decisiones Técnicas
+- Virtualización: Se utilizó react-window para manejar grandes listas de manera eficiente
+- Componentes funcionales: Implementados con React Hooks para un código más limpio
+- Sistema de diseño: Componentes modulares para mantener consistencia visual
+
+## 📊 Optimización de Rendimiento
+- Lista virtualizada para manejo eficiente de grandes conjuntos de datos
+- Carga perezosa (lazy loading) de componentes
+
+
+## Argumentación sobre la visualización de la lista en la Home
+La mejor forma de mostrar la lista en la Home es con una lista virtualizada en grid, optimizando el rendimiento al renderizar solo los elementos visibles.
+
+## Mejora Teórica sobre las llamadas usadas al backend
+Para mejorar la eficiencia en las llamadas al backend, se recomienda la paginación para evitar cargar grandes volúmenes de datos en una sola solicitud. Como alternativa, el uso de compresión GZIP ayuda a reducir el peso de las respuestas, mejorando los tiempos de carga.

@@ -45,7 +45,7 @@ export const handlers = [
       );
     }
   }),
-  http.get("https://randomuser.me/api/", ({ request }) => {
+  http.get(import.meta.env.VITE_API_PUBLIC_URL, ({ request }) => {
     if (request.headers.has("x-msw-bypass")) {
       return passthrough();
     }

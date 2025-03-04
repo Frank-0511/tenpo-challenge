@@ -1,7 +1,7 @@
 import { Avatar, Badge } from "@/shared/components";
+import { Gender, User } from "@/core/types";
 
 import { FaPhone } from "react-icons/fa";
-import { User } from "@/core/types";
 
 interface CardUserProps {
   user: User;
@@ -17,7 +17,7 @@ export const CardUser = ({ user }: CardUserProps) => {
   const avatarSrc = user?.picture?.thumbnail || "";
 
   return (
-    <div className="card card-custom !shadow-xl hover:shadow-2xl transition-shadow duration-300">
+    <div className="card card-user shadow-xl hover:shadow-2xl hover:scale-[1.05] border-primary hover:border transition-all duration-300 ease-in-out">
       <Avatar src={avatarSrc} alt={fullName} />
       <div className="card-body items-center text-center max-w-full w-full">
         <div className="w-full text-center">
@@ -38,14 +38,16 @@ export const CardUser = ({ user }: CardUserProps) => {
         </div>
         <div className="w-full text-center">
           <p className="text-sm w-full break-words flex items-center justify-center gap-2">
-            <FaPhone className="text-base-content" aria-hidden="true" />{" "}
+            <FaPhone className="fill-base-content" aria-hidden="true" />{" "}
             {userPhone}
           </p>
         </div>
         {userGender && (
           <Badge
-            text={userGender === "male" ? "Hombre" : "Mujer"}
-            color={userGender === "male" ? "badge-neutral" : "badge-primary"}
+            text={userGender === Gender.MALE ? "Hombre" : "Mujer"}
+            color={
+              userGender === Gender.MALE ? "badge-primary" : "badge-secondary"
+            }
           />
         )}
       </div>

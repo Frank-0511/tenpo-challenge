@@ -5,3 +5,21 @@
 [data-theme="emerald"] .card-custom {
   @apply shadow-2xl bg-base-200;
 }
+
+[data-theme="dark"] .card-user {
+  @apply  bg-gray-800;
+}
+
+[data-theme="emerald"] .card-user {
+  @apply bg-base-200;
+}
+
+.card-user {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.card-user:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}

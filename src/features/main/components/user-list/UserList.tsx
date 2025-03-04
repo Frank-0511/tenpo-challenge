@@ -7,8 +7,8 @@ interface UserListProps {
 }
 
 export const UserList = ({ users }: UserListProps) => {
-  const itemHeight = 324; // Altura de cada tarjeta
-  const cardWidth = 220; // Ancho de cada tarjeta
+  const itemHeight = 308;
+  const cardWidth = 220;
 
   return (
     <VirtualizedList
@@ -16,13 +16,9 @@ export const UserList = ({ users }: UserListProps) => {
       renderItem={(user) => <CardUser user={user} />}
       itemHeight={itemHeight}
       itemWidth={cardWidth}
-      rowGap={16}
-      columnGap={16}
+      rowGap={24}
+      columnGap={24}
       className="flex-grow"
-      styles={{
-        paddingLeft: "24px",
-        paddingRight: "24px",
-      }}
     />
   );
 };

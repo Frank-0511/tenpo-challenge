@@ -84,8 +84,8 @@ bun run build
 - Carga perezosa (lazy loading) de componentes
 
 
-## Argumentación sobre la visualización de la lista en la Home
+## ❔Argumentación sobre la visualización de la lista en la Home
 La mejor forma de mostrar la lista en la Home es con una lista virtualizada en grid, optimizando el rendimiento al renderizar solo los elementos visibles.
 
-## Mejora Teórica sobre las llamadas usadas al backend
+## ❔Mejora Teórica sobre las llamadas usadas al backend
 Para mejorar la eficiencia en las llamadas al backend, se recomienda la paginación para evitar cargar grandes volúmenes de datos en una sola solicitud. Como alternativa, el uso de compresión GZIP ayuda a reducir el peso de las respuestas, mejorando los tiempos de carga.

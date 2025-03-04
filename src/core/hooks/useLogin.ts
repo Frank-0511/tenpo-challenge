@@ -17,8 +17,6 @@ export const useLogin = (shouldRedirect = true) => {
     mutationFn: (data: LoginRequest) => loginApi(data),
     onSuccess: (data) => {
       login({ user: data.user, token: data.token });
-      localStorage.setItem("token", data.token);
-
       if (shouldRedirect) {
         navigate("/");
       }

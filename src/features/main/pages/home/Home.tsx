@@ -1,7 +1,9 @@
-import { UserList } from "../../components";
-import { useUsers } from "../../../../core/hooks/useUser";
+import { UserList, UserListSkeleton } from "../../components";
+
+import { useUsers } from "@/core/hooks/useUser";
+
 const HomePage = () => {
-  const { listUsers } = useUsers();
+  const { listUsers, isLoading } = useUsers();
 
   return (
     <section className="flex flex-col w-full gap-6">
@@ -10,7 +12,11 @@ const HomePage = () => {
           <h1 className="text-2xl md:text-4xl">Lista de usuarios</h1>
         </article>
       </div>
-      <UserList users={listUsers} />
+      {isLoading ? (
+        <UserListSkeleton count={20} />
+      ) : (
+        <UserList users={listUsers} />
+      )}
     </section>
   );
 };
